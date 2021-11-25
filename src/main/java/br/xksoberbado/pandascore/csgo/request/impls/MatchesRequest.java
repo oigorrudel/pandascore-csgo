@@ -1,5 +1,6 @@
 package br.xksoberbado.pandascore.csgo.request.impls;
 
+import java.util.Objects;
 import br.xksoberbado.pandascore.csgo.request.AbstractPageRequest;
 import br.xksoberbado.pandascore.csgo.request.model.Match;
 import lombok.Builder;
@@ -7,14 +8,17 @@ import lombok.Builder;
 @Builder
 public class MatchesRequest extends AbstractPageRequest<Match[]> {
 
-    private Type type = Type.DEFAULT;
+    private Type type;
 
     @Override
     public String getUrl() {
-        return URL + "matches"
-            + (isPast() ? "/past"
+        return URL + "matches" + (Objects.nonNull(type) ? defineSuffix() : "");
+    }
+
+    private String defineSuffix() {
+        return isPast() ? "/past"
                     : isRunning() ? "/running"
-                        : isUpcoming() ? "/upcoming" : "");
+                        : isUpcoming() ? "/upcoming" : "";
     }
 
     public boolean isPast() {
@@ -30,7 +34,7 @@ public class MatchesRequest extends AbstractPageRequest<Match[]> {
     }
 
     public enum Type {
-        DEFAULT, PAST, RUNNING, UPCOMING
+        PAST, RUNNING, UPCOMING
     }
 
 }
