@@ -1,6 +1,8 @@
 package br.xksoberbado.pandascore.csgo.request.params.range;
 
 import br.xksoberbado.pandascore.csgo.request.params.IParam;
+import br.xksoberbado.pandascore.csgo.request.params.Param;
+import br.xksoberbado.pandascore.csgo.request.params.ParamType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -8,13 +10,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum MatchRangeParam implements IParam {
 
-    BEGIN_AT("begin_at");
+    BEGIN_AT(new Param("begin_at", ParamType.RANGE));
 
-    private final String key;
-
-    @Override
-    public boolean isFilter() {
-        return false;
-    }
+    private final Param param;
 
 }

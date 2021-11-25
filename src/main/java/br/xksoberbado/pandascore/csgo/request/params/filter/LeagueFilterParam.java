@@ -1,6 +1,8 @@
 package br.xksoberbado.pandascore.csgo.request.params.filter;
 
 import br.xksoberbado.pandascore.csgo.request.params.IParam;
+import br.xksoberbado.pandascore.csgo.request.params.Param;
+import br.xksoberbado.pandascore.csgo.request.params.ParamType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -8,15 +10,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum LeagueFilterParam implements IParam {
 
-    MODIFIED_AT("modified_at"),
-    NAME("name"),
-    SLUG("slug"),
-    URL("url");
+    MODIFIED_AT(new Param("modified_at", ParamType.FILTER)),
+    NAME(new Param("name", ParamType.FILTER)),
+    SLUG(new Param("slug", ParamType.FILTER)),
+    URL(new Param("url", ParamType.FILTER));
 
-    private final String key;
+    private final Param param;
 
-    @Override
-    public boolean isFilter() {
-        return true;
-    }
 }

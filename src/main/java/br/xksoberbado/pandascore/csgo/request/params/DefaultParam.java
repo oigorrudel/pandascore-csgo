@@ -7,12 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum DefaultParam implements IParam {
 
-    ID("id");
+    ID(new Param("id", ParamType.FILTER));
 
-    private final String key;
+    private final Param param;
 
-    @Override
-    public boolean isFilter() {
-        return true; //TODO: usado em ambos
-    }
 }

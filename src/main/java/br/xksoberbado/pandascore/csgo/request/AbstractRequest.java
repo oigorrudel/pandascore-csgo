@@ -59,10 +59,10 @@ abstract class AbstractRequest<T> implements IRequest {
 
         ofNullable(filterParams)
             .ifPresent(params -> {
-                params.forEach((k, v) -> log.info("Param: " + getFilter(k.getKey()) + " Value: " + v));
+                params.forEach((k, v) -> log.info("Param: " + k.getParam().getName() + " Value: " + v));
 
                 var queryParams = params.keySet().stream()
-                    .map(k -> (k.isFilter() ? getFilter(k.getKey()) : getRange(k.getKey())) + "=" + params.get(k))
+                    .map(k -> k.getParam().toQuery() + "=" + params.get(k))
                     .collect(Collectors.joining("&"));
 
                 urlBuilder.append((pageable ? "&" : "") +queryParams);
@@ -79,14 +79,6 @@ abstract class AbstractRequest<T> implements IRequest {
 
     public void clearFilters() {
         this.filterParams = null;
-    }
-
-    private String getFilter(final String filter) {
-        return "filter[" + filter + "]";
-    }
-
-    private String getRange(final String filter) {
-        return "range[" + filter + "]";
     }
 
     private HttpHeaders getHeaders() {
