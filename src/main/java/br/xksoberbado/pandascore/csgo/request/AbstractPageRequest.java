@@ -1,10 +1,12 @@
 package br.xksoberbado.pandascore.csgo.request;
 
 import java.util.Map;
-import static java.util.Optional.*;
+import static java.util.Optional.empty;
+import static java.util.Optional.of;
 import br.xksoberbado.pandascore.csgo.request.page.CustomPageable;
-import br.xksoberbado.pandascore.csgo.request.params.DefaultParam;
-import br.xksoberbado.pandascore.csgo.request.params.IParam;
+import br.xksoberbado.pandascore.csgo.request.params.Param;
+import br.xksoberbado.pandascore.csgo.request.params.ParamType;
+import br.xksoberbado.pandascore.csgo.request.params.Params;
 import org.springframework.http.ResponseEntity;
 
 public abstract class AbstractPageRequest<T> extends AbstractRequest<T> {
@@ -15,7 +17,7 @@ public abstract class AbstractPageRequest<T> extends AbstractRequest<T> {
         return get(empty(), of(pageable));
     }
 
-    public ResponseEntity<T> getPage(final Map<IParam, Object> filterParams) {
+    public ResponseEntity<T> getPage(final Map<Param, Object> filterParams) {
         return get(of(filterParams), of(pageable));
     }
 
@@ -24,7 +26,7 @@ public abstract class AbstractPageRequest<T> extends AbstractRequest<T> {
         return get(empty(), of(pageable));
     }
 
-    public ResponseEntity<T> getPage(final Map<IParam, Object> filterParams, final CustomPageable pageable) {
+    public ResponseEntity<T> getPage(final Map<Param, Object> filterParams, final CustomPageable pageable) {
         this.pageable = pageable;
         return get(of(filterParams), of(pageable));
     }
@@ -36,7 +38,7 @@ public abstract class AbstractPageRequest<T> extends AbstractRequest<T> {
 
     @Override
     public ResponseEntity<?> getById(final Long... ids) {
-        buildFilters(Map.entry(DefaultParam.ID, buildArrayFromLongs(ids)));
+        buildFilters(Map.entry(Params.ID.apply(ParamType.FILTER), buildArrayFromLongs(ids)));
         return getPage();
     }
 }

@@ -11,8 +11,9 @@ import java.util.stream.Collectors;
 import static java.util.Optional.empty;
 import static java.util.Optional.ofNullable;
 import br.xksoberbado.pandascore.csgo.request.page.CustomPageable;
-import br.xksoberbado.pandascore.csgo.request.params.DefaultParam;
-import br.xksoberbado.pandascore.csgo.request.params.IParam;
+import br.xksoberbado.pandascore.csgo.request.params.Param;
+import br.xksoberbado.pandascore.csgo.request.params.ParamType;
+import br.xksoberbado.pandascore.csgo.request.params.Params;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -31,14 +32,14 @@ abstract class AbstractRequest<T> implements IRequest {
 
     private RestTemplate restTemplate = new RestTemplate();
 
-    protected Map<IParam, Object> filterParams;
+    protected Map<Param, Object> filterParams;
 
     public ResponseEntity<?> getById(final Long... ids) {
-        buildFilters(Map.entry(DefaultParam.ID, buildArrayFromLongs(ids)));
+        buildFilters(Map.entry(Params.ID.apply(ParamType.FILTER), buildArrayFromLongs(ids)));
         return get(empty(), empty());
     }
 
-    protected ResponseEntity<T> get(final Optional<Map<IParam, Object>> filterParamsOp,
+    protected ResponseEntity<T> get(final Optional<Map<Param, Object>> filterParamsOp,
         final Optional<CustomPageable> customPageableOp) {
         urlBuilder = new StringBuilder();
         urlBuilder.append(getUrl());
@@ -54,15 +55,15 @@ abstract class AbstractRequest<T> implements IRequest {
         return get(urlBuilder.toString());
     }
 
-    private void applyFilters(final Optional<Map<IParam, Object>> filterParamsOp, final boolean pageable) {
+    private void applyFilters(final Optional<Map<Param, Object>> filterParamsOp, final boolean pageable) {
         filterParamsOp.ifPresent(params -> this.filterParams = params);
 
         ofNullable(filterParams)
             .ifPresent(params -> {
-                params.forEach((k, v) -> log.info("Param: " + k.getParam().getName() + " Value: " + v));
+                params.forEach((k, v) -> log.info("Param: " + k.getName() + " Value: " + v));
 
                 var queryParams = params.keySet().stream()
-                    .map(k -> k.getParam().toQuery() + "=" + params.get(k))
+                    .map(k -> k.toQuery() + "=" + params.get(k))
                     .collect(Collectors.joining("&"));
 
                 urlBuilder.append((pageable ? "&" : "") +queryParams);
@@ -111,7 +112,7 @@ abstract class AbstractRequest<T> implements IRequest {
             .collect(Collectors.joining(","));
     }
 
-    protected void buildFilters(final Map.Entry<IParam, Object>... entrys) {
+    protected void buildFilters(final Map.Entry<Param, Object>... entrys) {
         this.filterParams = new LinkedHashMap<>();
         Arrays.stream(entrys)
             .forEach(entry -> this.filterParams.put(entry.getKey(), entry.getValue()));

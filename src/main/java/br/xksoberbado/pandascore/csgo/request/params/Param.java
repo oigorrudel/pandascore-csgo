@@ -12,8 +12,6 @@ public class Param {
 
     private String name;
     private ParamType type;
-//    private String value;
-
 
     public String toQuery() {
         return this.type.getUnaryOperator().apply(this.name);
