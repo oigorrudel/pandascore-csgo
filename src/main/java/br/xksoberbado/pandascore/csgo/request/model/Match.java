@@ -1,6 +1,5 @@
 package br.xksoberbado.pandascore.csgo.request.model;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -31,7 +30,9 @@ public class Match {
     private Integer numberOfGames;
 
     @JsonProperty("scheduled_at")
-    private LocalDateTime scheduledAt;
+    private String scheduledAt;
+
+    private List<MatchTeam> opponents;
 
     private List<Game> games;
 
