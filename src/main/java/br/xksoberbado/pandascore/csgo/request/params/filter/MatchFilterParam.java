@@ -1,11 +1,12 @@
-package br.xksoberbado.pandascore.csgo.request.params;
+package br.xksoberbado.pandascore.csgo.request.params.filter;
 
+import br.xksoberbado.pandascore.csgo.request.params.IParam;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum MatchParam implements IParam {
+public enum MatchFilterParam implements IParam {
 
     BEGIN_AT("begin_at"), //array date-time
     DETAILED_STATS("detailed_stats"), //boolean
@@ -33,5 +34,10 @@ public enum MatchParam implements IParam {
     WINNER_ID("winner_id"); //array
 
     private final String key;
+
+    @Override
+    public boolean isFilter() {
+        return true;
+    }
 
 }

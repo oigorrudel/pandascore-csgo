@@ -4,4 +4,6 @@ public interface IParam {
 
     String getKey();
 
+    boolean isFilter();
+
 }

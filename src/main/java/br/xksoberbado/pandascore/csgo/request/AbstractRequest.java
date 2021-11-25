@@ -62,7 +62,7 @@ abstract class AbstractRequest<T> implements IRequest {
                 params.forEach((k, v) -> log.info("Param: " + getFilter(k.getKey()) + " Value: " + v));
 
                 var queryParams = params.keySet().stream()
-                    .map(k -> getFilter(k.getKey()) + "=" + params.get(k))
+                    .map(k -> (k.isFilter() ? getFilter(k.getKey()) : getRange(k.getKey())) + "=" + params.get(k))
                     .collect(Collectors.joining("&"));
 
                 urlBuilder.append((pageable ? "&" : "") +queryParams);
@@ -83,6 +83,10 @@ abstract class AbstractRequest<T> implements IRequest {
 
     private String getFilter(final String filter) {
         return "filter[" + filter + "]";
+    }
+
+    private String getRange(final String filter) {
+        return "range[" + filter + "]";
     }
 
     private HttpHeaders getHeaders() {

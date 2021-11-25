@@ -11,4 +11,8 @@ public enum DefaultParam implements IParam {
 
     private final String key;
 
+    @Override
+    public boolean isFilter() {
+        return true; //TODO: usado em ambos
+    }
 }
