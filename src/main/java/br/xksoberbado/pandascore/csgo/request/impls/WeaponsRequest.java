@@ -1,7 +1,7 @@
 package br.xksoberbado.pandascore.csgo.request.impls;
 
 import br.xksoberbado.pandascore.csgo.request.AbstractPageRequest;
-import br.xksoberbado.pandascore.csgo.request.model.Weapon;
+import br.xksoberbado.pandascore.csgo.model.Weapon;
 import lombok.Builder;
 
 @Builder

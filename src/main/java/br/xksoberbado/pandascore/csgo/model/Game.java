@@ -1,4 +1,4 @@
-package br.xksoberbado.pandascore.csgo.request.model;
+package br.xksoberbado.pandascore.csgo.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

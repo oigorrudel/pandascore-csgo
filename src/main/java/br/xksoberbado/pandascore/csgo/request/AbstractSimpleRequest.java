@@ -3,7 +3,7 @@ package br.xksoberbado.pandascore.csgo.request;
 import java.util.Map;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
-import br.xksoberbado.pandascore.csgo.request.params.Param;
+import br.xksoberbado.pandascore.csgo.params.Param;
 import org.springframework.http.ResponseEntity;
 
 public abstract class AbstractSimpleRequest<T> extends AbstractRequest<T>{

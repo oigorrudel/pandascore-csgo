@@ -4,9 +4,9 @@ import java.time.LocalDate;
 import java.util.Map;
 import java.util.Objects;
 import br.xksoberbado.pandascore.csgo.request.AbstractPageRequest;
-import br.xksoberbado.pandascore.csgo.request.model.Match;
-import br.xksoberbado.pandascore.csgo.request.params.ParamType;
-import br.xksoberbado.pandascore.csgo.request.params.Params;
+import br.xksoberbado.pandascore.csgo.model.Match;
+import br.xksoberbado.pandascore.csgo.params.ParamType;
+import br.xksoberbado.pandascore.csgo.params.Params;
 import lombok.Builder;
 import org.springframework.http.ResponseEntity;
 

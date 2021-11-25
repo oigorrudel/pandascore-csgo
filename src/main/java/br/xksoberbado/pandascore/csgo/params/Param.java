@@ -1,4 +1,4 @@
-package br.xksoberbado.pandascore.csgo.request.params;
+package br.xksoberbado.pandascore.csgo.params;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

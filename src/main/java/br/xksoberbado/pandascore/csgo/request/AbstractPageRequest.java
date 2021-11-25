@@ -3,10 +3,10 @@ package br.xksoberbado.pandascore.csgo.request;
 import java.util.Map;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
-import br.xksoberbado.pandascore.csgo.request.page.CustomPageable;
-import br.xksoberbado.pandascore.csgo.request.params.Param;
-import br.xksoberbado.pandascore.csgo.request.params.ParamType;
-import br.xksoberbado.pandascore.csgo.request.params.Params;
+import br.xksoberbado.pandascore.csgo.page.CustomPageable;
+import br.xksoberbado.pandascore.csgo.params.Param;
+import br.xksoberbado.pandascore.csgo.params.ParamType;
+import br.xksoberbado.pandascore.csgo.params.Params;
 import org.springframework.http.ResponseEntity;
 
 public abstract class AbstractPageRequest<T> extends AbstractRequest<T> {

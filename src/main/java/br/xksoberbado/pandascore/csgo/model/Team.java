@@ -1,4 +1,4 @@
-package br.xksoberbado.pandascore.csgo.request.model;
+package br.xksoberbado.pandascore.csgo.model;
 
 import java.util.List;
 import lombok.Data;

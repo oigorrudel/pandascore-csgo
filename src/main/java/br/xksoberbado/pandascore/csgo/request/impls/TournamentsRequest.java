@@ -2,7 +2,7 @@ package br.xksoberbado.pandascore.csgo.request.impls;
 
 import java.util.Objects;
 import br.xksoberbado.pandascore.csgo.request.AbstractPageRequest;
-import br.xksoberbado.pandascore.csgo.request.model.Tournament;
+import br.xksoberbado.pandascore.csgo.model.Tournament;
 import lombok.Builder;
 
 @Builder
