@@ -112,9 +112,9 @@ abstract class AbstractRequest<T> implements IRequest {
             .collect(Collectors.joining(","));
     }
 
-    protected void buildFilters(final Map.Entry<Param, Object>... entrys) {
+    protected void buildFilters(final Map.Entry<Param, Object>... entries) {
         this.filterParams = new LinkedHashMap<>();
-        Arrays.stream(entrys)
+        Arrays.stream(entries)
             .forEach(entry -> this.filterParams.put(entry.getKey(), entry.getValue()));
     }
 

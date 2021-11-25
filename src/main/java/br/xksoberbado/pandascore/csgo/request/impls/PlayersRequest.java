@@ -11,9 +11,9 @@ import org.springframework.http.ResponseEntity;
 @Builder
 public class PlayersRequest extends AbstractPageRequest<Player[]> {
 
-    public ResponseEntity<Player[]> getPageByNationality(String... nationalities) {
+    public ResponseEntity<Player[]> getByNationality(String... nationalities) {
         buildFilters(Map.entry(Params.NATIONALITY.apply(ParamType.FILTER), buildArrayFromStrings(nationalities)));
-        return getPage();
+        return get();
     }
 
     @Override

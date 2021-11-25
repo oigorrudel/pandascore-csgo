@@ -11,9 +11,9 @@ import org.springframework.http.ResponseEntity;
 @Builder
 public class TeamsRequest extends AbstractPageRequest<Team[]> {
 
-    public ResponseEntity<Team[]> getPageByName(String... names) {
+    public ResponseEntity<Team[]> getByName(String... names) {
         buildFilters(Map.entry(Params.NAME.apply(ParamType.FILTER), buildArrayFromStrings(names)));
-        return getPage();
+        return get();
     }
 
     @Override
