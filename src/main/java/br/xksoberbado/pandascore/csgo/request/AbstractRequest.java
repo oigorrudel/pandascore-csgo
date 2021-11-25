@@ -1,12 +1,17 @@
 package br.xksoberbado.pandascore.csgo.request;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import static java.util.Optional.empty;
 import static java.util.Optional.ofNullable;
 import br.xksoberbado.pandascore.csgo.request.page.CustomPageable;
+import br.xksoberbado.pandascore.csgo.request.params.DefaultParam;
 import br.xksoberbado.pandascore.csgo.request.params.IParam;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -27,6 +32,11 @@ abstract class AbstractRequest<T> implements IRequest {
     private RestTemplate restTemplate = new RestTemplate();
 
     protected Map<IParam, Object> filterParams;
+
+    public ResponseEntity<?> getById(final Long... ids) {
+        buildFilters(Map.entry(DefaultParam.ID, buildArrayFromLongs(ids)));
+        return get(empty(), empty());
+    }
 
     protected ResponseEntity<T> get(final Optional<Map<IParam, Object>> filterParamsOp,
         final Optional<CustomPageable> customPageableOp) {
@@ -92,6 +102,23 @@ abstract class AbstractRequest<T> implements IRequest {
 
     private Class getClazz() {
         return (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+
+    protected String buildArrayFromLongs(final Long... longs) {
+        return Arrays.stream(longs)
+            .map(Objects::toString)
+            .collect(Collectors.joining(","));
+    }
+
+    protected String buildArrayFromStrings(final String... strings) {
+        return Arrays.stream(strings)
+            .collect(Collectors.joining(","));
+    }
+
+    protected void buildFilters(final Map.Entry<IParam, Object>... entrys) {
+        this.filterParams = new LinkedHashMap<>();
+        Arrays.stream(entrys)
+            .forEach(entry -> this.filterParams.put(entry.getKey(), entry.getValue()));
     }
 
 }

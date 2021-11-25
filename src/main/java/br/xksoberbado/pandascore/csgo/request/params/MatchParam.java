@@ -14,7 +14,6 @@ public enum MatchParam implements IParam {
     FINISHED("finished"), //boolean
     FORFEIT("forfeit"), //boolean
     FUTURE("future"), //boolean
-    ID("id"), //array of integers
     LEAGUE_ID("league_id"), //array of integers
     MATCH_TYPE("match_type"), //array of strings //best_of, custom, first_to, ow_best_of
     MODIFIED_AT("modified_at"), //array date-time

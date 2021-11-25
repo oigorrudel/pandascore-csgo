@@ -5,13 +5,9 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum LeagueParam implements IParam {
+public enum TeamParam implements IParam {
 
-    MODIFIED_AT("modified_at"),
-    NAME("name"),
-    SLUG("slug"),
-    URL("url");
+    NAME("name");
 
     private final String key;
-
 }
