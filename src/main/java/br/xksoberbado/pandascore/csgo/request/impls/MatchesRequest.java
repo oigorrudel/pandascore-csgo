@@ -1,12 +1,12 @@
 package br.xksoberbado.pandascore.csgo.request.impls;
 
 import java.time.LocalDate;
-import java.util.Map;
 import java.util.Objects;
-import br.xksoberbado.pandascore.csgo.request.AbstractPageRequest;
 import br.xksoberbado.pandascore.csgo.model.Match;
+import br.xksoberbado.pandascore.csgo.params.ParamTuple;
 import br.xksoberbado.pandascore.csgo.params.ParamType;
 import br.xksoberbado.pandascore.csgo.params.Params;
+import br.xksoberbado.pandascore.csgo.request.AbstractPageRequest;
 import lombok.Builder;
 import org.springframework.http.ResponseEntity;
 
@@ -16,7 +16,7 @@ public class MatchesRequest extends AbstractPageRequest<Match[]> {
     private Type type;
 
     public ResponseEntity<Match[]> getToday() {
-        buildFilters(Map.entry(Params.BEGIN_AT.apply(ParamType.RANGE), buildRangeOfToday()));
+        buildFilters(new ParamTuple(Params.BEGIN_AT.apply(ParamType.RANGE), buildRangeOfToday()));
         return get();
     }
 

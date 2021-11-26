@@ -5,6 +5,7 @@ import static java.util.Optional.empty;
 import static java.util.Optional.of;
 import br.xksoberbado.pandascore.csgo.page.CustomPageable;
 import br.xksoberbado.pandascore.csgo.params.Param;
+import br.xksoberbado.pandascore.csgo.params.ParamTuple;
 import br.xksoberbado.pandascore.csgo.params.ParamType;
 import br.xksoberbado.pandascore.csgo.params.Params;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public abstract class AbstractPageRequest<T> extends AbstractRequest<T> {
 
     @Override
     public ResponseEntity<?> getById(final Long... ids) {
-        buildFilters(Map.entry(Params.ID.apply(ParamType.FILTER), buildArrayFromLongs(ids)));
+        buildFilters(new ParamTuple(Params.ID.apply(ParamType.FILTER), buildArrayFromLongs(ids)));
         return get();
     }
 }

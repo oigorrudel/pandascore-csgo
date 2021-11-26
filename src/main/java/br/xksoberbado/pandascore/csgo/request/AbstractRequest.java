@@ -12,6 +12,7 @@ import static java.util.Optional.empty;
 import static java.util.Optional.ofNullable;
 import br.xksoberbado.pandascore.csgo.page.CustomPageable;
 import br.xksoberbado.pandascore.csgo.params.Param;
+import br.xksoberbado.pandascore.csgo.params.ParamTuple;
 import br.xksoberbado.pandascore.csgo.params.ParamType;
 import br.xksoberbado.pandascore.csgo.params.Params;
 import lombok.AccessLevel;
@@ -35,7 +36,7 @@ abstract class AbstractRequest<T> implements IRequest {
     protected Map<Param, Object> filterParams;
 
     public ResponseEntity<?> getById(final Long... ids) {
-        buildFilters(Map.entry(Params.ID.apply(ParamType.FILTER), buildArrayFromLongs(ids)));
+        buildFilters(new ParamTuple(Params.ID.apply(ParamType.FILTER), buildArrayFromLongs(ids)));
         return get(empty(), empty());
     }
 
@@ -62,7 +63,7 @@ abstract class AbstractRequest<T> implements IRequest {
             .ifPresent(params -> {
                 params.forEach((k, v) -> log.info("Param: " + k.getName() + " Value: " + v));
 
-                var queryParams = params.keySet().stream()
+                String queryParams = params.keySet().stream()
                     .map(k -> k.toQuery() + "=" + params.get(k))
                     .collect(Collectors.joining("&"));
 
@@ -85,7 +86,7 @@ abstract class AbstractRequest<T> implements IRequest {
     private HttpHeaders getHeaders() {
         return ofNullable(TokenSingleton.getInstance())
             .map(tokenSingleton -> {
-                var headers = new HttpHeaders();
+                HttpHeaders headers = new HttpHeaders();
                 headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + tokenSingleton.getToken());
                 return headers;
             })
@@ -112,7 +113,7 @@ abstract class AbstractRequest<T> implements IRequest {
             .collect(Collectors.joining(","));
     }
 
-    protected void buildFilters(final Map.Entry<Param, Object>... entries) {
+    protected void buildFilters(final ParamTuple... entries) {
         this.filterParams = new LinkedHashMap<>();
         Arrays.stream(entries)
             .forEach(entry -> this.filterParams.put(entry.getKey(), entry.getValue()));
