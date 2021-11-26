@@ -1,7 +1,10 @@
 package br.xksoberbado.pandascore.csgo.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import lombok.Data;
 
 @Data
@@ -30,7 +33,8 @@ public class Match {
     private Integer numberOfGames;
 
     @JsonProperty("scheduled_at")
-    private String scheduledAt;
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime scheduledAt;
 
     private List<MatchTeam> opponents;
 
