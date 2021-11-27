@@ -24,7 +24,7 @@ public class Match {
     @JsonProperty("winner_id")
     private Long winnerId;
 
-    private String status;
+    private MatchStatus status;
 
     @JsonProperty("match_type")
     private MatchType type;
