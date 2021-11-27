@@ -2,6 +2,7 @@ package br.xksoberbado.pandascore.csgo.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -39,5 +40,25 @@ public class Match {
     private List<MatchTeam> opponents;
 
     private List<Game> games;
+
+    public boolean isCanceled() {
+        return Objects.nonNull(this.status) && this.status.equals(MatchStatus.CANCELED);
+    }
+
+    public boolean isFinished() {
+        return Objects.nonNull(this.status) && this.status.equals(MatchStatus.FINISHED);
+    }
+
+    public boolean isNotStarted() {
+        return Objects.nonNull(this.status) && this.status.equals(MatchStatus.NOT_STARTED);
+    }
+
+    public boolean isPostponed() {
+        return Objects.nonNull(this.status) && this.status.equals(MatchStatus.POSTPONED);
+    }
+
+    public boolean isRunning() {
+        return Objects.nonNull(this.status) && this.status.equals(MatchStatus.RUNNING);
+    }
 
 }
