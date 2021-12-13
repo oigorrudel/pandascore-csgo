@@ -10,6 +10,7 @@ public final class Params {
     public static final Function<ParamType, Param> ID = paramType -> new Param("id", paramType);
     public static final Function<ParamType, Param> NAME = paramType -> new Param("name", paramType);
     public static final Function<ParamType, Param> BEGIN_AT = paramType -> new Param("begin_at", paramType);
+    public static final Function<ParamType, Param> SCHEDULED_AT = paramType -> new Param("scheduled_at", paramType);
     public static final Function<ParamType, Param> NATIONALITY = paramType -> new Param("nationality", paramType);
 
 }

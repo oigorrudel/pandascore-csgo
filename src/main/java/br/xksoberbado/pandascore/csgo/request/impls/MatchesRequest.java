@@ -16,7 +16,7 @@ public class MatchesRequest extends AbstractPageRequest<Match[]> {
     private Type type;
 
     public ResponseEntity<Match[]> getToday() {
-        buildFilters(new ParamTuple(Params.BEGIN_AT.apply(ParamType.RANGE), buildRangeOfToday()));
+        buildFilters(new ParamTuple(Params.SCHEDULED_AT.apply(ParamType.RANGE), buildRangeOfToday()));
         return get();
     }
 

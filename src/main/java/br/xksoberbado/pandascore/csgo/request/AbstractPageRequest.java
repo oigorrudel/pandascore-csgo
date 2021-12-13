@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 
 public abstract class AbstractPageRequest<T> extends AbstractRequest<T> {
 
-    protected CustomPageable pageable = new CustomPageable(1, 50);
+    protected CustomPageable pageable = new CustomPageable(1, 100);
 
     public ResponseEntity<T> get() {
         return get(empty(), of(pageable));
