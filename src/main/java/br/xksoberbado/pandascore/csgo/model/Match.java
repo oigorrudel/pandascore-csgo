@@ -24,6 +24,8 @@ public class Match {
     @JsonProperty("serie_id")
     private Long serieId;
 
+    private Serie serie;
+
     @JsonProperty("winner_id")
     private Long winnerId;
 
