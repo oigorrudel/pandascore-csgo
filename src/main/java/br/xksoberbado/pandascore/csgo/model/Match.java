@@ -47,6 +47,9 @@ public class Match {
 
     private List<Game> games;
 
+    @JsonProperty("streams_list")
+    private List<LiveStream> streams;
+
     public boolean isCanceled() {
         return Objects.nonNull(this.status) && this.status.equals(MatchStatus.CANCELED);
     }
