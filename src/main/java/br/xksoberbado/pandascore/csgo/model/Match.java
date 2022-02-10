@@ -65,6 +65,10 @@ public class Match {
         return Objects.nonNull(this.status) && this.status.equals(MatchStatus.RUNNING);
     }
 
+    public boolean isBestOf() {
+        return Objects.nonNull(this.type) && this.type.equals(MatchType.BEST_OF);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
