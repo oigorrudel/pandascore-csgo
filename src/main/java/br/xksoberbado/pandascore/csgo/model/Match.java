@@ -18,6 +18,8 @@ public class Match {
     @JsonProperty("league_id")
     private Long leagueId;
 
+    private League league;
+
     @JsonProperty("tournament_id")
     private Long tournamentId;
 
