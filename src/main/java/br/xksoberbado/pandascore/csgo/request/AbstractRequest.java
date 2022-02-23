@@ -80,7 +80,7 @@ abstract class AbstractRequest<T> implements IRequest {
     }
 
     public void clearFilters() {
-        this.filterParams = null;
+        this.filterParams.clear();
     }
 
     private HttpHeaders getHeaders() {
