@@ -1,10 +1,14 @@
 package br.xksoberbado.pandascore.csgo.model;
 
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+import java.util.List;
+import java.util.Objects;
+
+@Getter
+@Setter
 public class Team {
 
     private Long id;
@@ -16,4 +20,16 @@ public class Team {
 
     private List<Player> players;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Team team = (Team) o;
+        return Objects.equals(id, team.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
