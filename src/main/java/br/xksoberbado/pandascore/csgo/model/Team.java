@@ -3,12 +3,14 @@ package br.xksoberbado.pandascore.csgo.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Objects;
 
 @Getter
 @Setter
+@ToString
 public class Team {
 
     private Long id;
