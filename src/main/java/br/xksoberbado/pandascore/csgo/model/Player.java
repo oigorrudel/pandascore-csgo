@@ -1,6 +1,6 @@
 package br.xksoberbado.pandascore.csgo.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
 
 @Data
@@ -12,12 +12,12 @@ public class Player {
 
     private String nationality;
 
-    @JsonProperty("first_name")
+    @JsonAlias("first_name")
     private String firstName;
 
     private String birthday;
 
-    @JsonProperty("current_team")
+    @JsonAlias("current_team")
     private Team currentTeam;
 
 }

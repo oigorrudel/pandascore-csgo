@@ -1,8 +1,9 @@
 package br.xksoberbado.pandascore.csgo.model;
 
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class Tournament {
@@ -13,12 +14,12 @@ public class Tournament {
 
     private Character tier;
 
-    @JsonProperty("league_id")
+    @JsonAlias("league_id")
     private Long leagueId;
 
     private List<Match> matches;
 
-    @JsonProperty("serie_id")
+    @JsonAlias("serie_id")
     private Long serieId;
 
     /**
