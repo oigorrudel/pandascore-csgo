@@ -1,6 +1,6 @@
 package br.xksoberbado.pandascore.csgo.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,7 +17,7 @@ public class Team {
 
     private String name;
 
-    @JsonProperty("image_url")
+    @JsonAlias("image_url")
     private String imageUrl;
 
     private List<Player> players;

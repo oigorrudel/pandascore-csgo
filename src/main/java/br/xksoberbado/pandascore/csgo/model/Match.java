@@ -1,13 +1,14 @@
 package br.xksoberbado.pandascore.csgo.model;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -15,31 +16,31 @@ public class Match {
 
     private Long id;
 
-    @JsonProperty("league_id")
+    @JsonAlias("league_id")
     private Long leagueId;
 
     private League league;
 
-    @JsonProperty("tournament_id")
+    @JsonAlias("tournament_id")
     private Long tournamentId;
 
-    @JsonProperty("serie_id")
+    @JsonAlias("serie_id")
     private Long serieId;
 
     private Serie serie;
 
-    @JsonProperty("winner_id")
+    @JsonAlias("winner_id")
     private Long winnerId;
 
     private MatchStatus status;
 
-    @JsonProperty("match_type")
+    @JsonAlias("match_type")
     private MatchType type;
 
-    @JsonProperty("number_of_games")
+    @JsonAlias("number_of_games")
     private Integer numberOfGames;
 
-    @JsonProperty("scheduled_at")
+    @JsonAlias("scheduled_at")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime scheduledAt;
 
@@ -47,7 +48,7 @@ public class Match {
 
     private List<Game> games;
 
-    @JsonProperty("streams_list")
+    @JsonAlias("streams_list")
     private List<LiveStream> streams;
 
     public boolean isCanceled() {

@@ -1,6 +1,6 @@
 package br.xksoberbado.pandascore.csgo.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
 
 @Data
@@ -14,7 +14,7 @@ public class Weapon {
 
     private String slug;
 
-    @JsonProperty("image_url")
+    @JsonAlias("image_url")
     private String imageUrl;
 
     /**
